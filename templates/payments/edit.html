@@ -1,0 +1,41 @@
+{% extends 'dbase.html' %}
+
+{% load static %}
+
+{% load bootstrap4 %}
+
+{% block body %}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="card mb-0">
+            <div class="card-body">
+                <div class="content-page-header">
+                    <h5>Edit Purchases</h5>
+                </div>					
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {%  bootstrap_form form %}
+                            <br>
+                            
+    
+                            <div class="form-group">
+                                <button type="submit"class="btn btn-primary">Submit</button>
+    
+                            </div>
+    
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock body %}

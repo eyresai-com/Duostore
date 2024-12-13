@@ -1,0 +1,414 @@
+{% extends 'dbase.html' %}
+
+{% load static %}
+
+
+{% block body %}
+
+
+<style>
+    .btn-group-sm>.btn-icon.btn,
+    .btn-icon.btn-sm {
+    font-size: 1.2rem !important;
+    height: calc(1.625rem + 2px);
+    width: calc(1.625rem + 2px);
+    }
+    @media (min-width: 992px) {
+    .card-datatable.table-responsive {
+    overflow-x: hidden;
+    }
+    }
+    .dt-buttons.btn-group.flex-wrap {
+    margin-top: -32px;
+    }
+    <style>
+       @media print {
+           .print-button {
+               display: none;
+           }
+       }
+   </style>
+ </style>
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+
+        <div class="page-header">
+            <div class="content-page-header ">
+                <h5>Profit Loss Report</h5>
+                <div class="list-btn">
+
+
+                    <div class="mb-5">
+                        <div class="dropdown float-end">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                This Year
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#" onclick="showContent('thisyear')">This Year</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="showContent('thismonth')">This Month</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="showContent('prevyear')">Previous
+                                        Year</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="showContent('alltime')">All Time</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="thisyear">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Revenue</td>
+                                        <td> {{current_year}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Expenses</td>
+                                        <td>{{current_year_expense}}</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>Other Fees</td>
+                                        <td>{{current_year_other_fees_amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Revenue</td>
+                                        <td>{{previous_year}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Current Year's Revenue </td>
+                                        <td>{{current_year}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Current Month's Revenue</td>
+                                        <td>{{current_month}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Gross profit: INR {{gross_profit_this_year}}</h3>
+                            <p>(Revenue-Expenses)</p>
+                            <h3 class="mt-3">Net profit: INR {{net_profit_this_year}}</h3>
+                            <p>Net Profit</p>
+
+                            <a href="{% url "thisYearProfitLossPrint" %}" class="btn btn-primary mt-4 print-button"><i
+                                    class="bx bx-printer"></i>
+                                &nbsp;Print</a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="thismonth" style="display: none;">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Revenue</td>
+                                        <td>INR {{current_month}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Expenses</td>
+                                        <td>INR {{current_month_expense}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Other Fees</td>
+                                        <td>INR {{current_month_other_fees_amount}}</td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Revenue</td>
+                                        <td>INR {{previous_year}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Current Year's Revenue </td>
+                                        <td>INR {{current_year}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Current Month's Revenue</td>
+                                        <td>INR {{current_month}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Gross profit: {{settings.currency_symbol}} {{gross_profit_this_month}}</h3>
+                            <p>(Revenue-Expenses)</p>
+                            <h3 class="mt-3">Net profit: {{settings.currency_symbol}} {{net_profit_this_month}}</h3>
+                            <p>Net Profit</p>
+
+                            <a href="{% url "thisMonthProfitLossPrint" %}" class="btn btn-primary mt-4 print-button"><i class="bx bx-printer"></i> &nbsp;Print</a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <div id="prevyear" style="display: none;">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Revenue</td>
+                                        <td>INR {{previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Expenses</td>
+                                        <td>INR {{previous_year_expense}}</td>
+                                     </tr>
+                                     
+                                     <tr>
+                                        <td>Other Fees</td>
+                                        <td>INR {{previous_year_other_fees_amount}}</td>
+                                     </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Revenue</td>
+                                        <td>INR {{previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Year's Revenue </td>
+                                        <td>INR {{current_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Month's Revenue</td>
+                                        <td>INR {{current_month}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Gross profit: {{settings.currency_symbol}} {{gross_profit_previous_year}}</h3>
+                            <p>(Revenue-Expenses)</p>
+                            <h3 class="mt-3">Net profit: {{settings.currency_symbol}} {{net_profit_previous_year}}</h3>
+                            <p>Net Profit</p>
+
+
+                            <a href="{% url "previousYearProfitLossPrint" %}" 
+                            class="btn btn-primary mt-4 print-button"><i class="bx bx-printer"></i> 
+                            &nbsp;Print</a>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div id="alltime" style="display: none;">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Revenue</td>
+                                        <td>INR {{total_revenue}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Expenses</td>
+                                        <td>INR {{total_expense}}</td>
+                                     </tr>
+                                     
+                                     <tr>
+                                        <td>Other Fees</td>
+                                        <td>INR {{total_other_fees}}</td>
+                                     </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Revenue</td>
+                                        <td>INR {{previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Year's Revenue </td>
+                                        <td>INR {{current_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Month's Revenue</td>
+                                        <td>INR {{current_month}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Gross profit: INR {{gross_profit}}</h3>
+                            <p>(Revenue-Expenses)</p>
+                            <h3 class="mt-3">Net profit: INR {{net_profit}}</h3>
+                            <p>Net Profit</p>
+
+
+                            <a href="{% url "previousYearProfitLossPrint" %}" 
+                            class="btn btn-primary mt-4 print-button"><i class="bx bx-printer"></i> 
+                            &nbsp;Print</a>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+<script>
+        // Define the display names for each time period
+    const timePeriods = {
+        thisyear: "This Year",
+        thismonth: "This Month",
+        prevyear: "Previous Year",
+        alltime: "All Time"
+    };
+
+    // Function to show content based on selected period
+    function showContent(period) {
+        // Hide all sections
+        ['thisyear', 'thismonth', 'prevyear', 'alltime'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) element.style.display = 'none';
+        });
+
+        // Display the selected section if it exists
+        const selectedElement = document.getElementById(period);
+        if (selectedElement) selectedElement.style.display = 'block';
+
+        // Update dropdown button text to show the selected period
+        document.getElementById('dropdownMenuButton').textContent = timePeriods[period];
+    }
+
+    // Initialize by showing "This Year" content by default
+    document.addEventListener('DOMContentLoaded', () => {
+        showContent('thisyear');
+    });
+ </script>
+
+{% endblock body %}

@@ -1,0 +1,943 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block body %}
+
+
+{% include 'includes/loading.html' %}
+{% include 'includes/navbar.html' %}
+
+
+<main>
+
+
+
+    <!-- ==================== Start Header ==================== -->
+
+    <header class="header-ds">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="caption md-mb30">
+                        <h1>Closer,
+                            <br> Smarter &  <span class="play-font">Stronger AI</span></h1>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="text md-mb50">
+                        <p>Duostore – bridging the gap between local vendors and customers like never before. We empower businesses to connect with their communities both online and offline, offering seamless solutions that enhance visibility, boost sales, and make shopping local easy and convenient. By focusing on proximity, we’re making it simpler for vendors to grow and for customers to find the products they love right in their neighborhood.</p>
+                        <a href="{% url 'about' %}" class="butn butn-md butn-bord butn-rounded mt-40">
+                            <div class="d-flex align-items-center">
+                                <span>Learn More</span>
+                                <span class="icon ml-10">
+                                    <i class="ti-angle-right"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-lg-5 d-flex align-items-end">
+                    <div class="social-icon md-hide">
+                            <a href="#0">
+                                <i class="ti-instagram"></i>
+                            </a>
+                            <a href="#0">
+                                 <i class="ti-facebook"></i>
+                            </a>
+                            <a href="#0">
+                                <i class="ti-linkedin"></i>
+                            </a>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="numb d-flex">
+                        <div>
+                            <h2>98%</h2>
+                            <span>Vendors satisfied and <br> repeating</span>
+                        </div>
+                        <div class="ml-auto">
+                            <div>
+                                <h2>25+</h2>
+                                <span>Vendor Onborded <br> Bangalore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== End Header ==================== -->
+
+
+
+    <!-- ==================== Start box light ==================== -->
+
+    <section class="box-light section-padding pt-0">
+
+        <!-- ==================== Start Intro ==================== -->
+
+        <div class="intro-ds">
+            <div class="container">
+                <div class="layers"></div>
+                <div class="box">
+                    <div class="comit bord-thin-bottom pb-30 mb-80">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="item">
+                                    <h6>Top-notch AI Product</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="item text-center">
+                                    <h6>Dedicated Support 24/7</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="item text-right">
+                                    <h6>Flexible Pricing</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="founders">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-3 md-mb30">
+                                <div class="imgs d-flex align-items-center">
+                                    <div>
+                                        <div class="img img1">
+                                            <img src="{% static 'images/sowmaya.jpg' %}" alt="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="img img2">
+                                            <img src="{% static 'images/nagendra.jpg' %}" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Brains behind <br> Duostore</p>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="cont">
+                                    <h4>We help vendors reach local customers online and offline.</h4>
+                                    <a href="{% url 'about' %}" class="butn butn-md butn-bg butn-rounded mt-40">
+                                        <div class="d-flex align-items-center">
+                                            <span>More About Us</span>
+                                            <span class="icon ml-10">
+                                                <i class="ti-angle-right"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brand-ds pt-100 pb-100">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 item">
+                                <div class="text-center">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/brands/1.svg' %}" alt="">
+                                    </div>
+                                    <p>4.5/5 Star Rating on <br> Goodfirms</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 item">
+                                <div class="text-center">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/brands/2.svg' %}" alt="">
+                                    </div>
+                                    <p>Top 5 Global <br> Companies on Clutch</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 item">
+                                <div class="text-center">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/brands/3.svg' %}" alt="">
+                                    </div>
+                                    <p>95% Job Success <br> on Upwork</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 item">
+                                <div class="text-center">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/brands/4.svg' %}" alt="">
+                                    </div>
+                                    <p>Top 10 Global Team <br> on Behance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== End Intro ==================== -->
+
+
+        <!-- ==================== Start Portfolio ==================== -->
+
+        <div class="works-ds">
+            <div class="container pt-100 bord-thin-top">
+                <div class="sec-head mb-70 d-flex align-items-center">
+                    <div>
+                        <h2>Product <span>Overview</span></h2>
+                    </div>
+                    <div class="ml-auto">
+                        <a href="{% url 'overview' %}" class="butn butn-md butn-bord butn-rounded">
+                            <div class="d-flex align-items-center">
+                                <span>Product overview</span>
+                                <span class="icon ml-10">
+                                     <i class="ti-angle-right"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="work-box">
+                    <div class="swiper work-swiper swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/works/DashboardPage.png' %}" alt="">
+                                    </div>
+                                    <div class="cont">
+                                        <h4><a href="#0">Duostore Dashboard Overview</a></h4>
+                                        <span class="sub-color">Prototype Design, Webflow</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/works/ProfitLossReport.png' %}" alt="">
+                                    </div>
+                                    <div class="cont">
+                                        <h4><a href="#0">Duostore Profit& Loss Overview</a></h4>
+                                        <span class="sub-color">Finanace Management</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/works/AddInvoise.png' %}" alt="">
+                                    </div>
+                                    <div class="cont">
+                                        <h4><a href="#0">Duostore Invoice builder</a></h4>
+                                        <span class="sub-color">Point of Sale Integration</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/works/InvoiceReport.png' %}" alt="">
+                                    </div>
+                                    <div class="cont">
+                                        <h4><a href="#0">Duostore Reporting Structure</a></h4>
+                                        <span class="sub-color">Detail Reporting System</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== End Portfolio ==================== -->
+
+    </section>
+
+    <!-- ==================== End box light ==================== -->
+
+
+
+    <!-- ==================== Start Services ==================== -->
+
+    <section class="services-ds section-padding">
+        <div class="container">
+            <div class="sec-head mb-70 d-flex align-items-center">
+                <div>
+                    <h2>Our <span>Features</span></h2>
+                </div>
+               
+            </div>
+            <div class="item d-flex align-items-center">
+                <div class="title">
+                    <h2>SwitchCom</h2>
+                </div>
+                <div class="text ml-auto">
+                    <div class="d-flex align-items-center">
+                        <p>Enable vendors to bridge online and  <br> offline experiences</p>
+                        <div>
+                            <div class="icon invert">
+                                <img src="{% static 'assets/imgs/icons/chart-line-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item d-flex align-items-center">
+                <div class="title">
+                    <h2>Invoice</h2>
+                </div>
+                <div class="text ml-auto">
+                    <div class="d-flex align-items-center">
+                        <p>Invoice Number,Price and Quantity  <br> Tax Information</p>
+                        <div>
+                            <div class="icon invert">
+                                <img src="{% static 'assets/imgs/icons/crown-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item d-flex align-items-center">
+                <div class="title">
+                    <h2>Finance</h2>
+                </div>
+                <div class="text ml-auto">
+                    <div class="d-flex align-items-center">
+                        <p style="margin-right:50px">Personal Finance,Corporate <br> Financet, Public Finance </p>
+                        <div>
+                            <div class="icon invert">
+                                <img src="{% static 'assets/imgs/icons/bezier-curve-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item d-flex align-items-center">
+                <div class="title">
+                    <h2>Reports</h2>
+                </div>
+                <div class="text ml-auto">
+                    <div class="d-flex align-items-center">
+                        <p>Business ,academics government <br> for communicating insights</p>
+                        <div>
+                            <div class="icon invert">
+                                <img src="{% static 'assets/imgs/icons/code-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item d-flex align-items-center">
+                <div class="title">
+                    <h2>Orders</h2>
+                </div>
+                <div class="text ml-auto">
+                    <div class="d-flex align-items-center">
+                        <p style="margin-right:20px">Order Number,Payment Terms, <br> Buyer and Seller Information</p>
+                        <div>
+                            <div class="icon invert">
+                                <img src="{% static 'assets/imgs/icons/chart-line-solid.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Services ==================== -->
+
+
+
+    <!-- ==================== Start dark box ==================== -->
+
+    <section class="box-dark">
+
+        <div class="container box">
+
+            <div class="layers"></div>
+
+            <!-- ==================== Start Testimonials ==================== -->
+
+            <div class="testimonials-ds">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="qoute-icon md-mb50">
+                            <div class="text">
+                                <img src="{% static 'assets/imgs/testim/Vector_Cricle_Text.svg' %}" alt="">
+                            </div>
+                            <div class="icon">
+                                <img src="{% static 'assets/imgs/testim/vector_quote.svg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="swiper testim-swiper swiper-container">
+                            <div class="swiper-wrapper">
+
+                                {% for details in testimonial_list %}
+                                <div class="swiper-slide">
+                                    <div class="item">
+                                        <div class="text">
+                                            <h4>“{{details.content}}”</h4>
+                                        </div>
+                                        <div
+                                            class="info d-flex align-items-center mt-40 pt-30 bord-thin-top-light">
+                                            <div>
+                                                <div class="img-author">
+                                                    <img src="{{details.image.url}}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="info-text">
+                                                <span>{{details.name}}</span>
+                                                <p>{{details.designation}}, {{details.company}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                               
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== End Testimonials ==================== -->
+
+
+            <!-- ==================== Start clients ==================== -->
+
+            <div class="clients-ds mt-100">
+                <div class="sec-head mb-70">
+                    <h6 class="sub-head">partner with 10+ brands</h6>
+                </div>
+                <div class="row sm-marg">
+                    {% for details in partner_list %}
+                    <div class="col-lg col-md-4 col-6 md-mb30">
+                        <div class="item d-flex align-items-center justify-content-center">
+                            <div class="img">
+                                <img src="{{details.image.url}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+
+            <!-- ==================== End clients ==================== -->
+
+        </div>
+
+    </section>
+
+    <!-- ==================== End dark box ==================== -->
+
+
+
+    <!-- ==================== Start Pricing ==================== -->
+
+    <section class="pricing-ds section-padding">
+        <div class="container">
+            <div class="sec-head mb-70">
+                <h2>Membership <span>Pricing</span></h2>
+                <div class="d-flex align-items-center mt-50">
+                    <div class="text">
+                        <p>Clear, straightforward plans tailored to your needs. <br> Choose a plan and
+                            kick-start now</p>
+                    </div>
+                    <div class="ml-auto">
+                        <div class="pricing-tabsHead">
+                            <div class="price-radios">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="monthly-input" value="option1">
+                                    <label class="form-check-label" for="monthly-input">
+                                        Billed Monthly
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="yearly-input" value="option2" checked>
+                                    <label class="form-check-label" for="yearly-input">
+                                        Billed yearly
+                                        <small class="rounded-pill">-10%</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div class="content">
+                    <div class="price-head">
+                        <div class="price-headTitle"></div>
+                        <div class="price-headItem">
+                            <h6>Basic</h6>
+                            <h2 class="monthly_price">INR 4,999 <span>/mo</span></h2>
+                            <h2 class="yearly_price">INR 49,999 <span>/yr</span></h2>
+                            <p>Perfect for startup or <br> small business</p>
+                        </div>
+                        <div class="price-headItem bg-gray">
+                            <h6>Premium</h6>
+                            <h2 class="monthly_price color-blue5">INR 9,999 <span>/mo</span></h2>
+                            <h2 class="yearly_price color-blue5">INR 99,999 <span>/yr</span></h2>
+                            <p>Perfect for medium or <br> big business</p>
+                            <div class="label">
+                                <img src="{% static 'assets/imgs/pricing/Label.svg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="price-headItem">
+                            <h6>ultimate</h6>
+                            <h2 class="monthly_price">INR 14,999 <span>/mo</span></h2>
+                            <h2 class="yearly_price">INR 149,999 <span>/yr</span></h2>
+                            <p>Perfect for organise or <br> enterpise</p>
+                        </div>
+                    </div>
+
+                    <div class="price-body">
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Pause or cancel anytime
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item bg-gray">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Free support up to 12 Months
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item bg-gray">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Product Listings
+                            </div>
+                            <div class="price-item">
+                                <span> Up to 25 products</span>
+                            </div>
+                            <div class="price-item bg-gray">
+                                <span>Up to 100 products</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Unlimited products</span>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Transaction Fee
+                            </div>
+                            <div class="price-item">
+                                <span>3 percent</span>
+                            </div>
+                            <div class="price-item bg-gray">
+                                <span>2.5 percent</span>
+                            </div>
+                            <div class="price-item">
+                                <span>2 percent</span>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Product Visiblity
+                            </div>
+                            <div class="price-item">
+                                <span>Local (up to 5-mile radius)</span>
+
+                            </div>
+                            <div class="price-item bg-gray">
+                                <span>Local (up to 50-mile radius)</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Local (up to 500-mile radius)</span>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Marketing AI
+                            </div>
+                            <div class="price-item">
+                                <span>INR 1,999/month</span>
+                            </div>
+                            <div class="price-item bg-gray">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Invoice, Stock maintainance included
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item bg-gray">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Payment & Expense included
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item bg-gray">
+                                 <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item">
+                                 <i class="ti-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Visibility Boosts 
+                            </div>
+                            <div class="price-item">
+                                <span>1 per month</span>
+
+                            </div>
+                            <div class="price-item bg-gray">
+                                <span>3 per month</span>
+                            </div>
+                            <div class="price-item">
+                                <span>9 per month</span>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Featured Products 
+                            </div>
+                            <div class="price-item">
+                                <span>1 per month</span>
+
+                            </div>
+                            <div class="price-item bg-gray">
+                                <span>3 per month</span>
+                            </div>
+                            <div class="price-item">
+                                <span>9 per month</span>
+                            </div>
+                        </div>
+
+                        <div class="price-bodyItems">
+                            <div class="price-bodyTitle">
+                                Support  
+                            </div>
+                            <div class="price-item">
+                                <i class="ti-check"></i>
+
+                            </div>
+                            <div class="price-item bg-gray">
+                                <i class="ti-check"></i>
+                            </div>
+                            <div class="price-item">
+                                <i class="ti-check"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="price-foot">
+                        <div class="price-footTitle">
+                        </div>
+                        <div class="price-foot-item">
+                            <a href="#0" class="butn butn-md butn-bord butn-rounded">
+                                <div class="d-flex align-items-center">
+                                    <span>Pick This Package</span>
+                                    <span class="icon ml-10">
+                                        <i class="ti-angle-right"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="price-foot-item bg-gray">
+                            <a href="#0" class="butn butn-md butn-bg butn-rounded">
+                                <div class="d-flex align-items-center">
+                                    <span>Pick This Package</span>
+                                    <span class="icon ml-10">
+                                        <i class="ti-angle-right"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="price-foot-item">
+                            <a href="#0" class="butn butn-md butn-bord butn-rounded">
+                                <div class="d-flex align-items-center">
+                                    <span>Pick This Package</span>
+                                    <span class="icon ml-10">
+                                        <i class="ti-angle-right"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="botm mt-70">
+                <span>Not find your plan! Want to setup a tailor-plan for only you? <a href="{% url 'contact' %}">Contact
+                        Us</a></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Pricing ==================== -->
+
+
+
+    <!-- ==================== Start FAQS ==================== -->
+
+    <section class="faqs-ds section-padding pt-0">
+        <div class="container">
+            <div class="sec-head text-center mb-70">
+                <h2>Ask Us <span>Anything</span></h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1" aria-expanded="true"
+                                    aria-controls="collapse1">
+                                    What is Duostore?
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse"
+                                aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Duostore is a platform that connects local vendors with nearby customers through online and offline solutions, making it easy to find and purchase products locally.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item active">
+                            <h2 class="accordion-header" id="heading2">
+                                <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2"
+                                    aria-expanded="false" aria-controls="collapse2">
+                                    How do I become a vendor on Duostore?
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse show"
+                                aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Simply sign up on our website, complete the vendor profile, and submit for verification. Once approved, you can start listing products and reach local customers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading3">
+                                <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse3"
+                                    aria-expanded="false" aria-controls="collapse3">
+                                    What types of products can I sell on Duostore?
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse"
+                                aria-labelledby="heading3" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>We support a wide range of categories, from groceries and electronics to fashion and home essentials. Check our guidelines for any specific category restrictions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading4">
+                                <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse4"
+                                    aria-expanded="false" aria-controls="collapse4">
+                                    How do customers find my products on Duostore?
+                                </button>
+                            </h2>
+                            <div id="collapse4" class="accordion-collapse collapse"
+                                aria-labelledby="heading4" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Customers can search by product or category, and Duostore uses location-based features to show your products to customers nearby, helping you connect with your community.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading5">
+                                <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse5"
+                                    aria-expanded="false" aria-controls="collapse5">
+                                    Is there a cost to join as a vendor?
+                                </button>
+                            </h2>
+                            <div id="collapse5" class="accordion-collapse collapse"
+                                aria-labelledby="heading5" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Yes, we charge a small listing fee and a transaction fee per sale to cover platform maintenance and marketing efforts. Specific fee details can be found in our Vendor Terms.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading6">
+                                <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse6"
+                                    aria-expanded="false" aria-controls="collapse6">
+                                    Can I track my sales and inventory?                                </button>
+                            </h2>
+                            <div id="collapse6" class="accordion-collapse collapse"
+                                aria-labelledby="heading6" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Yes, our vendor dashboard allows you to manage product listings, track sales, view customer orders, and monitor inventory in real-time.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading7">
+                                <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse7"
+                                    aria-expanded="false" aria-controls="collapse7">
+                                    How are payments handled?
+                                </button>
+                            </h2>
+                            <div id="collapse7" class="accordion-collapse collapse"
+                                aria-labelledby="heading7" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>All payments are securely processed through our platform. Payouts to vendors are made on a regular schedule, with notifications for each completed transaction.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- ==================== End FAQS ==================== -->
+
+
+
+    <!-- ==================== Start Team ==================== -->
+
+    <section class="team-ds">
+        <div class="container section-padding bord-thin-top-light pb-80">
+            <div class="sec-head mb-70 d-flex align-items-center">
+                <div>
+                    <h2>Our <span>Team</span></h2>
+                </div>
+                
+            </div>
+            <div class="row">
+                {% for details in team_list %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="img">
+                            <img src="{{details.image.url}}" alt="">
+                        </div>
+                        <div class="cont">
+                            <h6> {{details.name}}</h6>
+                            <span>{{details.designation}}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Team ==================== -->
+
+
+
+    <!-- ==================== Start Blogs ==================== -->
+
+    <section class="blog-ds section-padding">
+        <div class="container">
+            <div class="sec-head mb-70 d-flex align-items-center">
+                <div>
+                    <h2>Our <span>Posts</span></h2>
+                </div>
+                <div class="ml-auto">
+                    <a href="{ url 'post_list' }" class="butn butn-md butn-bord butn-rounded">
+                        <div class="d-flex align-items-center">
+                            <span>See All Articles</span>
+                            <span class="icon ml-10">
+                                 <i class="ti-angle-right"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+
+                {% for details in post_list %}
+                <div class="col-lg-4">
+                    <div class="item pt-30 bord-thin-top-light md-mb50">
+                        <div class="info d-flex align-items-center mb-20">
+                            <a href="#0" class="tag">
+                                <span>{{details.author}}</span>
+                            </a>
+                            <span class="dash">/</span>
+                            <a href="#0" class="date">
+                                <span>{{details.created}}</span>
+                            </a>
+                        </div>
+                        <div class="text mb-50">
+                            <h6>{{details}}</h6>
+                        </div>
+                        <div class="img">
+                            <img src="{{details.image.url}}" alt="">
+                            <a href="{% url 'post_detail' details.id %}" class="icon invert">
+                                <img src="{% static 'assets/imgs/icons/arrow-top-right.svg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Blogs ==================== -->
+
+
+
+</main>
+
+
+{% include 'includes/footer.html' %}
+
+
+{% endblock body %}

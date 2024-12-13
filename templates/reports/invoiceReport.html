@@ -1,0 +1,408 @@
+{% extends 'dbase.html' %}
+
+{% load static %}
+
+
+{% block body %}
+
+
+<style>
+    .btn-group-sm>.btn-icon.btn,
+    .btn-icon.btn-sm {
+    font-size: 1.2rem !important;
+    height: calc(1.625rem + 2px);
+    width: calc(1.625rem + 2px);
+    }
+    @media (min-width: 992px) {
+    .card-datatable.table-responsive {
+    overflow-x: hidden;
+    }
+    }
+    .dt-buttons.btn-group.flex-wrap {
+    margin-top: -32px;
+    }
+    <style>
+       @media print {
+           .print-button {
+               display: none;
+           }
+       }
+   </style>
+ </style>
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+
+        <div class="page-header">
+            <div class="content-page-header ">
+                <h5>Invoice Report</h5>
+                <div class="list-btn">
+
+
+                    <div class="mb-5">
+                        <div class="dropdown float-end">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                This Year
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#" onclick="showContent('thisyear')">This Year</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="showContent('thismonth')">This Month</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="showContent('prevyear')">Previous
+                                        Year</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="showContent('alltime')">All Time</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="thisyear">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Paid Invoices</td>
+                                        <td>{{total_paid_this_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Unpaid Invoices</td>
+                                        <td>{{total_unpaid_this_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Overdue Invoices</td>
+                                        <td>{{total_overdue_this_year}}</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Total Invoices</td>
+                                         <td>{{total_invoices_this_year}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Total Invoice</td>
+                                        <td>{{total_invoices_previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Year's Total Invoice</td>
+                                        <td>{{total_invoices_this_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Month's Total Invoice</td>
+                                        <td>{{total_invoices_this_month}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>{{current_year}} Total Invoice Created: {{total_invoices_this_year}}</h3>
+
+                            <a href="{% url "invoicePrintThisYear" %}" class="btn btn-primary mt-4 print-button"><i class="bx bx-printer"></i> &nbsp;Print</a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="thismonth" style="display: none;">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Paid Invoices</td>
+                                        <td>{{total_paid_this_month}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Unpaid Invoices</td>
+                                        <td>{{total_unpaid_this_month}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Overdue Invoices</td>
+                                        <td>{{total_overdue_this_month}}</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Total Invoices</td>
+                                         <td>{{total_invoices_this_month}}</td>
+                                     </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Total Invoice</td>
+                                        <td>{{total_invoices_previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Year's Total Invoice</td>
+                                        <td>{{total_invoices_this_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Month's Total Invoice</td>
+                                        <td>{{total_invoices_this_month}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>{{current_month}}/{{current_year}} Total Invoice Created: {{total_invoices_this_month}}</h3>
+
+
+                            <a href="{% url "invoicePrintThisMonth" %}" class="btn btn-primary mt-4 print-button"><i class="bx bx-printer"></i> &nbsp;Print</a>                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <div id="prevyear" style="display: none;">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Paid Invoices</td>
+                                        <td>{{total_paid_previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Unpaid Invoices</td>
+                                        <td>{{total_unpaid_previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Overdue Invoices</td>
+                                        <td>{{total_overdue_previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Total Invoices</td>
+                                         <td>{{total_invoices_previous_year}}</td>
+                                     </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Total Invoice</td>
+                                        <td>{{total_invoices_previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Year's Total Invoice</td>
+                                        <td>{{total_invoices_this_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Month's Total Invoice</td>
+                                        <td>{{total_invoices_this_month}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>{{previous_year}} Total Invoice Created: {{total_invoices_previous_year}}</h3>
+
+
+
+                            <a href="{% url "invoicePrintPrevYear" %}" class="btn btn-primary mt-4 print-button"><i class="bx bx-printer"></i> &nbsp;Print</a>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div id="alltime" style="display: none;">
+
+            <div class="row">
+                <div class="col-lg-6 mb-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Paid Invoices</td>
+                                        <td>{{total_paid_invoices}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Unpaid Invoices</td>
+                                        <td>{{total_unpaid_invoices}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Total Overdue Invoices</td>
+                                        <td>{{total_overdue_invoices}}</td>
+                                     </tr>
+                                     <tr>
+                                         <td>Total Invoices</td>
+                                         <td>{{total_count}}</td>
+                                     </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Previous Year's Total Invoice</td>
+                                        <td>{{total_invoices_previous_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Year's Total Invoice</td>
+                                        <td>{{total_invoices_this_year}}</td>
+                                     </tr>
+                                     <tr>
+                                        <td>Current Month's Total Invoice</td>
+                                        <td>{{total_invoices_this_month}}</td>
+                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Total Invoice Created: {{total_count}}</h3>
+
+
+
+                            <a href="{% url "invoicePrintAllTime" %}" class="btn btn-primary mt-4 print-button"><i class="bx bx-printer"></i> &nbsp;Print</a>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+<script>
+        // Define the display names for each time period
+    const timePeriods = {
+        thisyear: "This Year",
+        thismonth: "This Month",
+        prevyear: "Previous Year",
+        alltime: "All Time"
+    };
+
+    // Function to show content based on selected period
+    function showContent(period) {
+        // Hide all sections
+        ['thisyear', 'thismonth', 'prevyear', 'alltime'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) element.style.display = 'none';
+        });
+
+        // Display the selected section if it exists
+        const selectedElement = document.getElementById(period);
+        if (selectedElement) selectedElement.style.display = 'block';
+
+        // Update dropdown button text to show the selected period
+        document.getElementById('dropdownMenuButton').textContent = timePeriods[period];
+    }
+
+    // Initialize by showing "This Year" content by default
+    document.addEventListener('DOMContentLoaded', () => {
+        showContent('thisyear');
+    });
+ </script>
+
+{% endblock body %}

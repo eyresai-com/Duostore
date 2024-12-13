@@ -1,0 +1,103 @@
+{% extends 'dbase.html' %}
+
+{% load static %}
+
+{% load bootstrap4 %}
+
+{% block body %}
+
+
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header ">
+                <h5>Payments</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                      
+                        
+                      
+                        <li>
+                            <a class="btn btn-primary" href="{% url 'paymentCreate' %}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Record Payment</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+            
+        
+       
+        
+        <!-- Table -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class=" card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="companies-table">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Invoice</th>
+                                        <th>Payment Method</th>
+                                        <th>Payment Amount</th>
+                                        <th>Payment Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for payment in payments %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ payment.title }}</td>
+
+                                       
+                                        <td>{{ payment.invoice.number }}</td>
+                                        <td>{{ payment.payment_method }}</td>
+                                        <td>INR {{ payment.payment_amount }}</td>
+                                        <td>{{ payment.payment_date }}</td>
+                                 
+                                        <td class="d-flex align-items-center">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <ul>
+                                                        <li>
+                                                            <a class="dropdown-item" href="{% url 'paymentEdit' slug=payment.slug %}"><i class="far fa-edit me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="{% url 'paymentDelete' slug=payment.slug %}" ><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                 
+                                   
+                                    
+                                   
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Table -->
+
+    </div>
+</div>
+
+
+
+{% endblock body %}

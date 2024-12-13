@@ -1,0 +1,100 @@
+
+{% load static %}
+
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            
+           
+            <ul class="sidebar-vertical">
+                <!-- Main -->
+                
+
+                <li class="menu-title"><span>Master data</span></li>
+                <li>
+                    <a href="{% url 'vendorDashboard' %}"> <span> Dashboard</span> </a>
+                   
+                </li>
+                
+             
+
+
+                <!-- Master Data -->
+                <li class="menu-title"><span>Master data</span></li>
+                <li>
+                    <a href="{% url 'product_items' %}"><i class="fe fe-users"></i> <span>Product Master</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'category_items' %}"><i class="fe fe-file"></i> <span>Category Master</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'brand_items' %}"><i class="fe fe-user"></i> <span>Brand Master</span></a>
+                </li>
+
+
+                <!-- Invoices -->
+                
+
+
+                <li class="menu-title"><span>Invoice</span></li>
+                <li>
+                    <a href="{% url 'InvoiceList' %}"><i class="fe fe-users"></i> <span>Invoice List</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'crmInvoiceCreate' %}"><i class="fe fe-file"></i> <span>Create Invoice</span></a>
+                </li>
+
+
+                <li class="menu-title"><span>Payments</span></li>
+                <li>
+                    <a href="{% url 'paymentCreate' %}"><i class="fe fe-users"></i> <span>Record Payment</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'payments' %}"><i class="fe fe-file"></i> <span>Payments list</span></a>
+                </li>
+
+
+                <li class="menu-title"><span>Expenses</span></li>
+                <li>
+                    <a href="{% url 'paymentCreate' %}"><i class="fe fe-users"></i> <span>Record Expense</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'payments' %}"><i class="fe fe-file"></i> <span>Expense list</span></a>
+                </li>
+               
+               
+             
+                
+
+                <li class="menu-title"><span>Settings</span></li>							
+                <li class="submenu"> 
+                    
+                   
+                        <li>
+                            <a href="{% url 'v_profile' %}"><i class="fe fe-users"></i> <span>Profile</span></a>
+                        </li>
+                    
+                        <li>
+                            <a href="{% url 'logout' %}"><i class="fe fe-power"></i> <span>Logout</span></a>
+                        </li>
+                       
+                    </ul>
+                </li>
+               
+
+                <!-- Extras -->
+               
+                <!-- Extras -->
+
+
+            </ul>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+

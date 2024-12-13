@@ -1,0 +1,227 @@
+{% extends 'dbase.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block body %}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="card mb-0">
+            <div class="card-body">
+                <div class="page-header">
+                    <div class="content-page-header">
+                        <h5>Edit Invoice</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="{% url 'edit_invoice' invoice.id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group-item border-0 mb-0">
+                                <div class="row align-item-center">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label>Invoice Number</label>
+                                            <input type="text" name="number" class="form-control" value="{{ invoice.number }}" placeholder="Enter Invoice Number" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label>Customer Name</label>
+                                            <select name="customer" class="select" required>
+                                                <option value="">Choose Customer</option>
+                                                {% for customer in customers %}
+                                                    <option value="{{ customer.id }}" {% if customer.id == invoice.customer.id %}selected{% endif %}>{{ customer.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label>Invoice Date</label>
+                                            <input type="date" name="date" class="form-control" value="{{ invoice.date|date:'Y-m-d' }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label>Due Date</label>
+                                            <input type="date" name="due_date" class="form-control" value="{{ invoice.due_date|date:'Y-m-d' }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label>Status</label>
+                                            <select name="status" class="select" required>
+                                                <option value="Unpaid" {% if invoice.status == 'Unpaid' %}selected{% endif %}>Unpaid</option>
+                                                <option value="Partially paid" {% if invoice.status == 'Partially paid' %}selected{% endif %}>Partially paid</option>
+                                                <option value="Paid" {% if invoice.status == 'Paid' %}selected{% endif %}>Paid</option>
+                                                <option value="Overdue" {% if invoice.status == 'Overdue' %}selected{% endif %}>Overdue</option>
+                                                <option value="Cancelled" {% if invoice.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                                                <option value="Refunded" {% if invoice.status == 'Refunded' %}selected{% endif %}>Refunded</option>
+                                                <option value="Draft" {% if invoice.status == 'Draft' %}selected{% endif %}>Draft</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label>Reference Number</label>
+                                            <input type="text" name="reference_number" class="form-control" value="{{ invoice.reference_number }}" placeholder="Enter Reference Number">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="d-flex justify-content-between flex-wrap">
+                                            <div class="input-block mb-3 recurring-tab">
+                                                <label>Recurring</label>
+                                                <ul class="nav nav-pills d-flex" id="pills-tab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link {% if invoice.recurring %}active{% endif %}" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Yes</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link {% if not invoice.recurring %}active{% endif %}" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">No</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-content pt-0" id="pills-tabContent">
+                                                <div class="tab-pane fade show {% if invoice.recurring %}active{% endif %}" id="pills-home" role="tabpanel">
+                                                    <div class="input-block mb-3">
+                                                        <label>Recurring cycle</label>
+                                                        <input type="text" name="recurring_cycle" class="form-control" value="{{ invoice.recurring_cycle }}" placeholder="Enter Month">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="input-block mb-3">
+                                            <label>Products</label>
+                                            <select name="product" class="select" required>
+                                                <option value="">Select Product</option>
+                                                {% for product in products %}
+                                                    <option value="{{ product.id }}" {% if product.id in invoice.products %}selected{% endif %}>{{ product.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-item">
+                                <div class="card-table">
+                                    <div class="card-body">
+                                        <div class="table-responsive no-pagination">
+                                            <table class="table table-center table-hover datatable">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>Product / Service</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit</th>
+                                                        <th>Rate</th>
+                                                        <th>Discount</th>
+                                                        <th>Tax</th>
+                                                        <th>Amount</th>
+                                                        <th class="no-sort">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for item in invoice.items %}
+                                                    <tr>
+                                                        <td>{{ item.product.name }}</td>
+                                                        <td><input type="number" name="quantity" class="form-control" value="{{ item.quantity }}" /></td>
+                                                        <td>{{ item.unit }}</td>
+                                                        <td><input type="number" name="rate" class="form-control" value="{{ item.rate }}" /></td>
+                                                        <td><input type="number" name="discount" class="form-control" value="{{ item.discount }}" /></td>
+                                                        <td>{{ item.tax }}</td>
+                                                        <td>{{ item.amount }}</td>
+                                                        <td><button type="button" class="btn btn-danger">Remove</button></td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="input-block mb-3">
+                                                <label>Discount Type</label>
+                                                <select name="discount_type" class="select">
+                                                    <option value="Percentage" {% if invoice.discount_type == 'Percentage' %}selected{% endif %}>Percentage(%)</option>
+                                                    <option value="Fixed" {% if invoice.discount_type == 'Fixed' %}selected{% endif %}>Fixed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="input-block mb-3">
+                                                <label>Discount(%)</label>
+                                                <input type="text" name="discount" class="form-control" value="{{ invoice.discount }}" placeholder="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-block mb-3">
+                                        <label>Tax</label>
+                                        <select name="tax" class="select">
+                                            <option>No Tax</option>
+                                            <option>IVA - (21%)</option>
+                                            <option>IRPF - (-15%)</option>
+                                            <option>PDV - (20%)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+
+                            <div class="form-group-item border-0 p-0">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-12">
+                                        <div class="form-group-bank">
+                                            <div class="input-block mb-3">
+                                                <label>Notes</label>
+                                                <textarea name="notes" class="form-control">{{ invoice.notes }}</textarea>
+                                            </div>
+                                            <div class="input-block mb-3">
+                                                <label>Terms and Conditions</label>
+                                                <textarea name="terms" class="form-control">{{ invoice.terms }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-12">
+                                        <div class="invoice-total-box">
+                                            <h4>Total Amount <span>{{ invoice.total_amount }}</span></h4>
+                                        </div>
+                                        <div class="input-block mb-3">
+                                            <label>Signature Name</label>
+                                            <input type="text" name="signature_name" class="form-control" value="{{ invoice.signature_name }}" placeholder="Enter Signature Name">
+                                        </div>
+                                        <div class="input-block mb-0">
+                                            <label>Signature Image</label>
+                                            <div class="input-block mb-3 service-upload service-upload-info mb-0">
+                                                <span><i class="fe fe-upload-cloud me-1"></i>Upload Signature</span>
+                                                <input type="file" name="signature_image" id="image_sign">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="add-customer-btns text-end">
+                                <button type="reset" class="btn btn-primary cancel me-2">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary" name="send">Save & Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

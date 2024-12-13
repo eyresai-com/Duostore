@@ -1,0 +1,435 @@
+{% extends 'dbase.html' %}
+{%  load static %}
+
+
+{% block body %}
+
+
+	
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header ">
+                <h5>Products</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                      
+                        
+                        <li>
+                            <a class="btn btn-primary" href="{% url 'add_category' %}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Category</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary" href="{% url 'add_brand' %}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Brand</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary" href="{% url 'add_product' %}"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Product</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+            
+        <!-- Search Filter -->
+        <div id="filter_inputs" class="card filter-card">
+            <div class="card-body pb-0">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="input-block mb-3">
+                            <label>Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="input-block mb-3">
+                            <label>Email</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="input-block mb-3">
+                            <label>Phone</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        
+        <!-- Table -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class=" card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="companies-table">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>Brand</th>
+                                        <th>Category</th>
+                                        <th>Unit Type</th>                                       
+                                        <th>Price</th>
+                                        <th>Selling Price</th>
+                                        <th class="no-sort">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in product %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td ><h2 class="table-avatar">
+                                           
+                                                    <a href="{% url 'edit_product' i.id %}">{{  i.product_name }}</a>
+                                        </h2></td>
+                                        <td>{{ i.brand.brand_name }}</td>
+                                        <td>{{ i.category.category_name }}</td>
+                                        <td>{{ i.unit_type}}</td>
+                                        <td>{{ i.product_price }}</td>
+                                        <td>{{ i.discounted_price }}</td>
+                                 
+                                        <td class="d-flex align-items-center">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <ul>
+                                                        <li>
+                                                            <a class="dropdown-item" href="{% url 'edit_product' i.id %}"><i class="far fa-edit me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="{% url 'delete_product' i.id %}" ><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                 
+                                   
+                                    
+                                   
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Table -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">						
+            <form action="#" autocomplete="off">
+                <!-- Product -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Product Name
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"  data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">														
+                                            <input type="text" class="form-control" id="member_search1" placeholder="Search Product">
+                                            <span><img src="assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Lenovo 3rd Generation
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Nike Jordan
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Apple Series 5 Watch
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Amazon Echo Dot
+                                            </label>
+                                            <!-- View All -->
+                                            <div class="view-content">
+                                                <div class="viewall-One">	
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Lobar Handy
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Woodcraft Sandal
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Black Slim 200 
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Red Premium Handy 
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Bold V3.2
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Iphone 14 Pro
+                                                    </label>
+                                                </div>
+                                                <div class="view-all">
+                                                    <a href="javascript:void(0);" class="viewall-button-One"><span class="me-2">View All</span><span><i class="fa fa-circle-chevron-down"></i></span></a>
+                                                </div>
+                                            </div>
+                                            <!-- /View All -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product -->							
+
+                <!-- Product Code -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100 collapsed"  data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            Product Code
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"  data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes3">
+                                <div class="selectBox-cont">
+                                    <div class="form-custom">														
+                                        <input type="text" class="form-control" id="member_search2" placeholder="Search Invoice">
+                                        <span><img src="assets/img/icons/search.svg" alt="img"></span>
+                                    </div>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="product-code">
+                                        <span class="checkmark"></span> P125389
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="product-code">
+                                        <span class="checkmark"></span> P125390
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="product-code">
+                                        <span class="checkmark"></span>  P125391
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="product-code">
+                                        <span class="checkmark"></span> P125392
+                                    </label>
+                                    <!-- View All -->
+                                    <div class="view-content">
+                                        <div class="viewall-Two">	
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="product-code">
+                                                <span class="checkmark"></span> P125393
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="product-code">
+                                                <span class="checkmark"></span> P125394
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="product-code">
+                                                <span class="checkmark"></span> P125395
+                                            </label>
+                                        </div>
+                                        <div class="view-all">
+                                            <a href="javascript:void(0);" class="viewall-button-Two"><span class="me-2">View All</span><span><i class="fa fa-circle-chevron-down"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <!-- /View All -->
+                                </div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product Code -->
+
+                <!-- Unts -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100 collapsed"  data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                            Units
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"  data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">										
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="units">
+                                        <span class="checkmark"></span> Inches
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="units">
+                                        <span class="checkmark"></span>  Pieces
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="units">
+                                        <span class="checkmark"></span> Hours
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="units">
+                                        <span class="checkmark"></span> Box
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="units">
+                                        <span class="checkmark"></span> Kilograms
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="units">
+                                        <span class="checkmark"></span> Meter
+                                    </label>
+                                </div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <!-- /Units -->
+
+                <!-- Category -->
+                <div class="accordion accordion-last" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100 collapsed"  data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                            Category	
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"  data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes4">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Laptop
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span>  Shoes
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Accessories
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Electronics
+                                    </label>
+                                    <!-- View All -->
+                                    <div class="view-content">
+                                        <div class="viewall-Two">	
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> 	Furnitures
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Bags
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Phone
+                                            </label>
+                                        </div>
+                                        <div class="view-all">
+                                            <a href="javascript:void(0);" class="viewall-button-Two"><span class="me-2">View All</span><span><i class="fa fa-circle-chevron-down"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <!-- /View All -->
+                                </div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <!-- /Category -->
+
+                <div class="filter-buttons">
+                    <button type="submit" class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                        Apply
+                    </button>
+                    <button type="submit" class="d-inline-flex align-items-center justify-content-center btn w-100 btn-secondary">
+                        Reset
+                    </button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+<!-- /Add Asset -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Products / Services</h3>
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+</div>
+
+    
+{% endblock body %}
+
+		
+		

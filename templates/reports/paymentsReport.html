@@ -1,0 +1,303 @@
+{% extends 'dbase.html' %}
+
+{% load static %}
+
+
+{% block body %}
+
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+    
+       
+        
+       
+
+
+            <div id="thisyear">
+
+                <div class="page-header">
+                    <div class="content-page-header ">
+                        <h5>Payment Report</h5>
+                        <div class="list-btn">
+                            <div class="dropdown float-end">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                This Year
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thisyear')">This Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thismonth')">This Month</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('prevyear')">Previous Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('alltime')">All Time</a></li>
+                                </ul>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+            
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="card-table">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-center table-hover datatable">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                    <th>#</th>
+                                                    <th>Title</th>
+                                                    <th>Invoice</th>
+                                                    <th>Payment Method</th>
+                                                    <th>Payment Amount</th>	
+                                                    <th>Payment Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for payment in payments_this_year %}
+                                            <tr class="odd">
+                                                <td>{{ forloop.counter}}</td>
+                                                <td><span class="emp_name text-truncate">{{ payment.title }}</span></td>
+                                                <td>{{ payment.invoice }}</td>
+                                                <td>{{ payment.payment_method }}</td>
+                                                <td> {{ payment.payment_amount }}</td>
+                                                <td>{{ payment.payment_date }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+           
+                </div>
+            </div>
+
+
+            <div id="thismonth" style="display: none;">
+
+                <div class="page-header">
+                    <div class="content-page-header ">
+                        <h5>Payment Report</h5>
+                        <div class="list-btn">
+                            <div class="dropdown float-end">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                This Year
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thisyear')">This Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thismonth')">This Month</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('prevyear')">Previous Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('alltime')">All Time</a></li>
+                                </ul>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+            
+                <div class="col-sm-12 col-lg-12">
+                    <div class="card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-center table-hover datatable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                                <th>#</th>
+                                                <th>Title</th>
+                                                <th>Invoice</th>
+                                                <th>Payment Method</th>
+                                                <th>Payment Amount</th>	
+                                                <th>Payment Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for payment in payments_this_month %}
+                                        <tr class="odd">
+                                            <td>{{ forloop.counter}}</td>
+                                            <td><span class="emp_name text-truncate">{{ payment.title }}</span></td>
+                                            <td>{{ payment.invoice }}</td>
+                                            <td>{{ payment.payment_method }}</td>
+                                            <td> {{ payment.payment_amount }}</td>
+                                            <td>{{ payment.payment_date }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="prevyear" style="display: none;">
+
+                <div class="page-header">
+                    <div class="content-page-header ">
+                        <h5>Payment Report</h5>
+                        <div class="list-btn">
+                            <div class="dropdown float-end">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                This Year
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thisyear')">This Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thismonth')">This Month</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('prevyear')">Previous Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('alltime')">All Time</a></li>
+                                </ul>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+            
+                <div class="col-sm-12 col-lg-12">
+                    <div class="card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-center table-hover datatable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                                <th>#</th>
+                                                <th>Title</th>
+                                                <th>Invoice</th>
+                                                <th>Payment Method</th>
+                                                <th>Payment Amount</th>	
+                                                <th>Payment Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for payment in payments_previous_year %}
+                                        <tr class="odd">
+                                            <td>{{ forloop.counter}}</td>
+                                            <td><span class="emp_name text-truncate">{{ payment.title }}</span></td>
+                                            <td>{{ payment.invoice }}</td>
+                                            <td>{{ payment.payment_method }}</td>
+                                            <td> {{ payment.payment_amount }}</td>
+                                            <td>{{ payment.payment_date }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="alltime" style="display: none;">
+
+                <div class="page-header">
+                    <div class="content-page-header ">
+                        <h5>Payment Report</h5>
+                        <div class="list-btn">
+                            <div class="dropdown float-end">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                This Year
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thisyear')">This Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('thismonth')">This Month</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('prevyear')">Previous Year</a></li>
+                                   <li><a class="dropdown-item" href="#" onclick="showContent('alltime')">All Time</a></li>
+                                </ul>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+            
+                <div class="col-sm-12 col-lg-12">
+                    <div class="card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-center table-hover datatable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                                <th>#</th>
+                                                <th>Title</th>
+                                                <th>Invoice</th>
+                                                <th>Payment Method</th>
+                                                <th>Payment Amount</th>	
+                                                <th>Payment Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for payment in all_payments %}
+                                        <tr class="odd">
+                                            <td>{{ forloop.counter}}</td>
+                                            <td><span class="emp_name text-truncate">{{ payment.title }}</span></td>
+                                            <td>{{ payment.invoice }}</td>
+                                            <td>{{ payment.payment_method }}</td>
+                                            <td> {{ payment.payment_amount }}</td>
+                                            <td>{{ payment.payment_date }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    // Define the display names for each time period
+const timePeriods = {
+    thisyear: "This Year",
+    thismonth: "This Month",
+    prevyear: "Previous Year",
+    alltime: "All Time"
+};
+
+// Function to show content based on selected period
+function showContent(period) {
+    // Hide all sections
+    ['thisyear', 'thismonth', 'prevyear', 'alltime'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.style.display = 'none';
+    });
+
+    // Display the selected section if it exists
+    const selectedElement = document.getElementById(period);
+    if (selectedElement) selectedElement.style.display = 'block';
+
+    // Update dropdown button text to show the selected period
+    document.getElementById('dropdownMenuButton').textContent = timePeriods[period];
+}
+
+// Initialize by showing "This Year" content by default
+document.addEventListener('DOMContentLoaded', () => {
+    showContent('thisyear');
+});
+</script>
+{% endblock body %}

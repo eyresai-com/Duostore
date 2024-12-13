@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block body %}
+
+
+{% include 'includes/loading.html' %}
+{% include 'includes/navbar.html' %}
+{% include 'includes/prod_navbar.html' %}
+
+
+
+
+
+
+<section class="half-section parallax" data-parallax-background-ratio="0.5" style="background-image:url('images/portfolio-bg.jpg');">
+    <div class="container">
+        <div class="row align-items-stretch justify-content-center extra-small-screen">
+            <div class="col-xl-6 col-lg-7 col-md-8 page-title-extra-small text-center d-flex justify-content-center flex-column">
+                <h1 class="alt-font text-gradient-sky-blue-pink margin-15px-bottom d-inline-block">Duostore's vendor Partner</h1>
+                <h2 class="text-extra-dark-gray alt-font font-weight-500 letter-spacing-minus-1px line-height-50 sm-line-height-45 xs-line-height-30 no-margin-bottom">{{vendor_detail}}</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title -->
+<!-- start section -->
+<section class="shopping-left-side-bar pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 shopping-content padding-55px-left md-padding-15px-left sm-margin-30px-bottom">
+                <ul class="product-listing shop-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center">
+                    <li class="grid-sizer"></li>
+                    <!-- start shop item -->
+                    {% for product in products %}
+                    <li class="grid-item wow animate__fadeIn">
+                        <div class="product-box margin-25px-bottom xs-margin-15px-bottom">
+                            <!-- start product image -->
+                            <div class="product-image border-radius-6px">
+                                <a href="{% url 'product_detail' product.slug %}">
+                                    <img class="default-image" src="{{ product.image.url }}" alt=""/>
+                                    <img class="hover-image" src="{{ product.image.url }}" alt=""/>
+                                </a>
+                                <div class="product-overlay bg-gradient-extra-midium-gray-transparent"></div>
+                            </div>
+                            <!-- end product image -->
+                            <!-- start product footer -->
+                            
+
+
+                            <div class="product-footer text-center padding-25px-top xs-padding-10px-top">
+                                <a href="{% url 'product_detail' product.slug %}" class="text-extra-dark-gray font-weight-500 d-inline-block">{{ product.product_name }}</a>
+                                <div class="product-price text-medium">
+                                    <span class="original-price" style="text-decoration: line-through; color: #999;">Inr {{ product.product_price }}</span>
+                                    <span class="discounted-price" style="margin-left: 10px; font-weight: bold; color: #e74c3c;">Inr {{ product.discounted_price }}</span>
+                                </div>
+                            </div>
+                            <!-- end product footer -->
+                        </div>
+                    </li>
+                    {% endfor %}
+                    <!-- end shop item -->
+                   
+                </ul>
+            </div>
+            <!-- start sidebar -->
+            <aside class="col-lg-3 col-md-4 shopping-sidebar">
+                <div class="border-bottom border-color-medium-gray padding-3-rem-bottom margin-3-rem-bottom wow animate__fadeIn">
+                    <span class="shop-title alt-font font-weight-500 text-extra-dark-gray d-block margin-20px-bottom">Filter by category</span>
+                    <ul class="list-style-07 filter-category">
+                        {% for category in categories %}
+                            <li>
+                                <a href="?category={{ category.id }}" class="{% if selected_category_id == category.id %}active{% endif %}">
+                                    <span class="product-cb product-category-cb"></span>
+                                    {{ category.category_name }}
+                                </a>
+                                <span class="item-qty">{{ category.product_count }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="border-bottom border-color-medium-gray padding-3-rem-bottom margin-3-rem-bottom wow animate__fadeIn">
+                    <span class="shop-title alt-font font-weight-500 text-extra-dark-gray d-block margin-20px-bottom">Filter by Brand</span>
+                    <ul class="list-style-07 filter-brand">
+                        {% for brand in brands %}
+                        
+                            <li>
+                                <a href="?brand={{ brand.id }}{% if selected_category_id %}&category={{ selected_category_id }}{% endif %}"
+                                   class="{% if selected_brand_id == brand.id %}active{% endif %}">
+                                    <span class="product-cb product-brand-cb"></span>
+                                    {{ brand.brand_name }}
+                                </a>
+                                <span class="item-qty">{{ brand.product_count }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+                </div>
+            
+                
+            </aside>
+            <!-- end sidebar -->
+        </div>
+    </div>
+</section>
+
+
+
+
+{% include 'includes/prod_footer.html' %}
+
+
+
+
+
+
+
+{% endblock body %}

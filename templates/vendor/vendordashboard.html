@@ -1,0 +1,295 @@
+{% extends 'dbase.html' %}
+{%  load static %}
+
+{% block body %}
+
+			<!-- Page Wrapper -->
+			<div class="page-wrapper">
+				<div class="content container-fluid pb-0">
+					
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="content-page-header">
+							<h5>Dashboard</h5>
+						</div>
+					</div>
+					<!-- /Page Header -->	
+					<div class="super-admin-dashboard">
+						<div class="row">
+							<div class="col-xl-5 d-flex">
+								<div class="dash-user-card w-100">
+									<h4>Welcome, {{request.user.first_name}} {{request.user.last_name}}</h4>
+										{% if result == "Profitable" %}
+										<p class="mb-4">Congratulations! Your business is running on profit. Keep up the great work!.</p>
+										{% elif result == "Loss" %}
+											<p class="mb-4">Unfortunately, your business incurred in loss. Keep striving for better results.</p>
+										{% endif %}									
+										<div class="dash-btns">
+										<a href="{% url 'expenses' %}" class="btn view-company-btn">View Expenses</a>
+										<a href="{% url 'InvoiceList' %}" class="btn view-package-btn">View Invoices</a>
+										</div>
+									<div class="dash-img">
+										<img src="{% static 'accounts/assets/img/dashboard-card-img.png' %}" alt="">
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-7 d-flex p-0">
+								<div class="row dash-company-row w-100 m-0">
+									<div class="col-lg-3 col-sm-6 d-flex">
+										<div class="company-detail-card w-100">
+											<div class="company-icon">
+												<img src="{% static 'accounts/assets/img/icons/dash-card-icon-01.svg' %}" alt="">
+											</div>
+											<div class="dash-comapny-info">
+												<h6>Paid Invoices</h6>
+												<h5>{{paid_invoice}}</h5>
+												<p><span>14% <i class="fe fe-chevrons-up"></i></span>Last month</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-sm-6 d-flex">
+										<div class="company-detail-card bg-info-light w-100">
+											<div class="company-icon">
+												<img src="{% static 'accounts/assets/img/icons/dash-card-icon-02.svg' %}" alt="">
+											</div>
+											<div class="dash-comapny-info">
+												<h6>Unpaid Invoice</h6>
+												<h5>{{unpaid_invoice}}</h5>
+												<p><span>1% <i class="fe fe-chevrons-up"></i></span>Last month</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-sm-6 d-flex">
+										<div class="company-detail-card bg-pink-light w-100">
+											<div class="company-icon">
+												<img src="{% static 'accounts/assets/img/icons/dash-card-icon-03.svg' %}" alt="">
+											</div>
+											<div class="dash-comapny-info">
+												<h6>Total Revenue</h6>
+												<h5>{{total_revenue}}</h5>
+												{% if result == "Profitable" %}
+												<span class="text-success"><i class="bx bx-up-arrow-alt"></i> Good Sales</span> 
+											{% elif result == "Loss" %}
+												<span class="text-danger"><i class="bx bx-down-arrow-alt"></i> Track Expenses</span>
+											{% endif %}											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-sm-6 d-flex">
+										<div class="company-detail-card bg-success-light w-100">
+											<div class="company-icon">
+												<img src="{% static 'accounts/assets/img/icons/dash-card-icon-04.svg' %}" alt="">
+											</div>
+											<div class="dash-comapny-info">
+												<h6>Total Expense</h6>
+												<h5>{{total_expense}}</h5>
+												{% if result == "Profitable" %}
+												<span class="text-success"><i class="bx bx-up-arrow-alt"></i> Good Progress</span> 
+											{% elif result == "Loss" %}
+												<span class="text-danger"><i class="bx bx-down-arrow-alt"></i> Heavy Expense</span>
+											{% endif %}												</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-5 d-flex">
+								<div class="card super-admin-dash-card">
+									<div class="card-header">
+										<div class="row align-center">
+											<div class="col">
+												<h5 class="card-title">Invoice Reports</h5>
+											</div>
+											<div class="col-auto">
+												<a href="{% url 'InvoiceList' %}" class="btn-right btn btn-sm btn-outline-primary">
+													View All 
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card-body p-0">
+										<div class="table-responsive">
+											<table class="table table-stripped table-hover">
+												<tbody>
+													{% for inv in invoice|slice:":4" %}
+													<tr>
+														<td>
+															<h2 class="table-avatar">
+																
+																<a href="{% url 'viewPrintnvoice' inv.slug %}">#{{inv.number}} 
+																				{% if inv.status == 'PAID' %}
+																							<span class="badge p-2 bg-success">{{ inv.status }}</span>
+																				{% elif inv.status == 'UNPAID' %}
+																							<span class="badge p-2 bg-warning">{{ inv.status }}</span>
+																				{% elif inv.status == 'OVERDUE' %}
+																							<span class="badge p-2 bg-danger">{{ inv.status }}</span>
+																				{% else %}
+																							<span class="badge p-2 bg-primary">{{ inv.status }}</span>
+																				{% endif %}
+																</a>
+																
+															</h2>
+														</td>
+														<td>24 Feb 2024</td>
+														<td class="text-end"><a href="{% url 'viewPrintnvoice' inv.slug %}" class="view-companies btn">View</a></td>
+													</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-7 d-flex">
+								<div class="card super-admin-dash-card">
+									
+									<div class="card-body p-0">
+										<div id="earnings-chart"></div>
+									</div>
+								</div>
+							</div>
+
+							
+							
+							
+							
+							<div class="col-xl-4 d-flex">
+								<div class="card super-admin-dash-card flex-fill">
+									<div class="card-header">
+										<div class="d-flex justify-content-between align-items-center">
+											<h5 class="card-title">Recent Payments</h5>
+	
+											
+										</div>
+									</div>
+									{% for payment in payments|slice:":3" %}
+									<div class="card-body p-0">
+										<div class="dash-plane-list">
+											<div class="plane-info">
+												<span class="icon-plane"><img src="{% static 'accounts/assets/img/icons/dashboard-plane-icon.svg' %}" alt=""></span>
+												<div class="plane-name">{{payment.title}} <span>(Monthly)</span> <h6>{{payment.payment_date}}</h6></div>
+											</div>
+											<span class="plane-rate">INR {{payment.payment_amount}}</span>
+										</div>
+									</div>
+									{% endfor %}
+
+								</div>
+							</div>
+							<div class="col-xl-4 d-flex">
+								<div class="card super-admin-dash-card flex-fill">
+									<div class="card-header">
+										<div class="d-flex justify-content-between align-items-center">
+											<h5 class="card-title">Recent Invoices</h5>
+	
+											
+										</div>
+									</div>
+
+									{% for inv in invoice|slice:":3" %}
+									<div class="card-body p-0">
+										<div class="dash-plane-list">
+											<div class="plane-info">
+												<span class="icon-company"><img src="{% static 'accounts/assets/img/companies/company-01.svg' %}" alt=""></span>
+												<span class="name-company"># {{inv.number}} </span>
+											</div>
+											{% if inv.status == 'PAID' %}
+											<span class="badge p-2 bg-success">{{ inv.status }}</span>
+											{% elif inv.status == 'UNPAID' %}
+														<span class="badge p-2 bg-warning">{{ inv.status }}</span>
+											{% elif inv.status == 'OVERDUE' %}
+														<span class="badge p-2 bg-danger">{{ inv.status }}</span>
+											{% else %}
+														<span class="badge p-2 bg-primary">{{ inv.status }}</span>
+											{% endif %}
+													</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+							<div class="col-xl-4 d-flex">
+								<div class="card super-admin-dash-card flex-fill">
+									<div class="card-header">
+										<div class="d-flex justify-content-between align-items-center">
+											<h5 class="card-title">Recent Expenses</h5>
+	
+											
+										</div>
+									</div>
+									{% for expense in expenses|slice:":6" %}
+									<div class="card-body p-0">
+										<div class="dash-plane-list">
+											<div class="plane-info">
+												<span class="icon-company"><img src="{% static 'accounts/assets/img/companies/company-04.svg' %}" alt=""></span>
+												<div class="plane-name"><span>{{expense.title}}</span> <h6>{{expense.date_of_expense}}</h6></div>
+											</div>
+											<span class="plane-rate">INR {{expense.amount}}</span>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+							
+							
+							
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+			
+
+		</div>
+		<!-- /Main Wrapper -->
+
+		<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				if($('#earnings-chart').length > 0 ){
+					var options = {
+						series: [{
+							name: "Earnings",
+							data: [
+								{% for month, revenue in chart_data.revenues %}
+									{ x: "{{ month }}", y: {{ revenue }} },
+								{% endfor %}
+							]
+						}],
+						chart: {
+							type: 'bar',
+							height: 250,
+						},
+						plotOptions: {
+							bar: {
+								borderRadius: 50,
+								borderRadiusApplication: 'around',
+							}
+						},
+						dataLabels: {
+							enabled: false,
+						},
+						colors: ['#7539FF'],
+						xaxis: {
+							type: 'category',
+							categories: {{ chart_data.months|safe }},
+							group: {
+								style: {
+									fontSize: '7px',
+									fontWeight: 700,
+								},
+								groups: [
+									{ title: '2024', cols: 12 }
+								]
+							}
+						},
+					};
+		
+					var chart = new ApexCharts(document.querySelector("#earnings-chart"), options);
+					chart.render();
+				}
+			});
+		</script>
+
+
+		
+{% endblock body %}

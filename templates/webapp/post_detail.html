@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block body %}
+
+
+{% include 'includes/loading.html' %}
+{% include 'includes/navbar.html' %}
+
+<main class="main-bg">
+
+    <!-- ==================== Start Slider ==================== -->
+
+    <header class="post-header pt-20">
+        <div class="container-xl bg-img mt-80" data-background="{{post_detail.banner_image.url}}" data-overlay-dark="4">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="caption">
+                        <h1 class="fz-55 mt-30">{{post_detail}}
+                        </h1>
+                    </div>
+                    <div class="info d-flex mt-40 align-items-center">
+                        <div class="left-info sm-mb30">
+                            <div class="d-flex align-items-center">
+                                <div class="author-info">
+                                    <div class="d-flex align-items-center">
+                                        <a href="#0" class="circle-60">
+                                            <img src="{% static 'assets/imgs/Duostorelogo.png' %}" alt=""
+                                                class="circle-img">
+                                        </a>
+                                        <a href="#0" class="ml-20">
+                                            <span class="opacity-7 mb-5">Author</span>
+                                            <h6 class="fz-16">{{post_detail.author}}</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="date ml-50">
+                                    <a href="#0">
+                                        <span class="opacity-7 mb-5">Published</span>
+                                        <h6 class="fz-16">{{post_detail.created}}</h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== End Slider ==================== -->
+
+
+
+    <!-- ==================== Start Blog ==================== -->
+
+    <section class="blog section-padding">
+        <div class="container">
+            <div class="row xlg-marg">
+                <div class="col-lg-8">
+                    <div class="main-post">
+                        <div class="item pb-60">
+                            <article>
+                                <div class="text">
+                                    <p><span class="spec-letter">*</span> {{post_detail.short_content}}</p>
+                                </div>
+                                
+                                <div class="title mt-30">
+                                    <h4>{{post_detail.title1}}</h4>
+                                </div>
+                                <div class="text mt-20">
+                                    <p>{{post_detail.content1}}
+                                    </p>
+                                </div>
+                            </article>
+
+                            <div class="post-qoute mt-50">
+                                <h6 class="fz-20">
+                                    <span class="l-block">{{post_detail.quote}}</span>
+                                    <span class="author mt-20 mb-0"> - Duostore</span>
+                                </h6>
+                            </div>
+
+                            <br>
+
+
+                            <div class="title mb-10">
+                                <h4>{{post_detail.title2}}</h4>
+                            </div>
+
+                            <div class="text mb-20">
+                                <p>{{post_detail.content1}}</p>
+                            </div>
+
+                            
+
+                            
+
+                            
+                        </div>
+
+                        <div class="author-area mt-50 bord-thin-bottom">
+                            <div class="flex">
+                                <div class="author-img mr-30">
+                                    <div class="img">
+                                        <img src="{% static 'assets/imgs/Duostorelogo.png' %}" alt="" class="circle-img">
+                                    </div>
+                                </div>
+                                <div class="cont valign">
+                                    <div class="full-width">
+                                        <h6 class="fw-600 mb-10">Duostore</h6>
+                                        <p>Use Duostore, custom-built vendor management for retail 
+                                            for flexibility.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                       
+                        <div class="widget catogry">
+                            <h6 class="title-widget">Categories</h6>
+                            <ul class="rest">
+                                {% for category in categories %}
+
+                                <li>
+                                    <span><a href="{% url 'post_by_category' category %}">{{category}}</a></span>
+                                    <span class="ml-auto">{{category.post_count}}</span>
+                                </li>
+                                {% endfor %}
+                               
+                            </ul>
+                        </div>
+                       
+                        <div class="widget tags">
+                            <h6 class="title-widget">Tags</h6>
+                            <div>
+
+                                {% for tag in post_detail.tags.all %}
+                                <a href="{% url 'post_by_tag' tag %}">{{tag.name}}</a>
+                                {% endfor %}
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Blog ==================== -->
+
+
+
+    <!-- ==================== Start Recent Blog ==================== -->
+
+    <div class="blog-mp">
+        <div class="container section-padding bord-thin-top-light">
+            <div class="sec-head mb-80">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Recent Posts</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="d-flex">
+                            <a href="{% url 'post_list' %}" class="butn butn-md butn-bord butn-rounded ml-auto">
+                                <div class="d-flex align-items-center">
+                                    <span>All Articles</span>
+                                    <span class="icon ml-20">
+                                        <i class="ti-angle-right"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row xlg-marg">
+                {% for details in post_list %}
+                <div class="col-lg-4 bord">
+                    <div class="item">
+                        <div class="info d-flex align-items-center">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="author-img fit-img">
+                                        <img src="{% static 'assets/imgs/Duostorelogo.png' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="author-info ml-10">
+                                    <span>Duostore</span>
+                                    <span class="sub-color">Author</span>
+                                </div>
+                            </div>
+                            <div class="date ml-auto">
+                                <span class="sub-color"><i
+                                        class="ti-timer mr-15 opacity-7"></i> {{details.created}}</span>
+                            </div>
+                        </div>
+                        <div class="img fit-img mt-30">
+                            <img src="{{details.image.url}}" alt="">
+                        </div>
+                        <div class="cont mt-30">
+                            <h6>
+                                <a href="{% url 'post_detail' details.id %}">{{details}}</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== End Recent Blog ==================== -->
+
+
+</main>
+
+
+{% include 'includes/footer.html' %}
+
+{% endblock body %}

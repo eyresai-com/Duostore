@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block body %}
+
+
+{% include 'includes/loading.html' %}
+{% include 'includes/navbar.html' %}
+
+
+<main>
+
+
+
+    <!-- ==================== Start Header ==================== -->
+
+    <header class="work-hed">
+        <div class="container section-padding">
+            <div class="caption text-center">
+                <h1>OverView</h1>
+                <div class="path mt-15">
+                    <span>
+                        <a href="/">Home</a>
+                    </span>
+                    <span><i class="ti-arrow-right"></i></span>
+                    <span class="main-color">Product</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== End Header ==================== -->
+
+
+
+    <!-- ==================== Start Portfolio ==================== -->
+
+    <section class="work-card section-padding pt-0">
+        <div class="container-xxl">
+            <div class="cards">
+
+                {% for details in pro_list %}
+                <div class="card-item">
+                    <div class="img fit-img">
+                        <img src="{{details.image.url}}" alt="">
+                        
+                    </div>
+                </div>
+                {% endfor %}
+                
+               
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== End Portfolio ==================== -->
+
+
+</main>
+
+{% include 'includes/footer.html' %}
+
+{% endblock body %}
